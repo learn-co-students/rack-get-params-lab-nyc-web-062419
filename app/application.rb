@@ -11,12 +11,12 @@ class Application
       @@items.each do |item|
         resp.write "#{item}\n"
       end
-    elsif req.path.match("/add/")
+    elsif req.path.match(/add/)
       search_term = req.params["item"]
-      if @@item.include?|search_term|
-        @@items << search_term
+      if @@items.include?(search_term)
+        @@cart<< search_term
       else
-        "We do not have that item"
+        resp.write "We don't have that item"
       end      
       resp.write "added #{search_term}"
     elsif req.path.match(/search/)
